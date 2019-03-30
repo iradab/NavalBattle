@@ -19,8 +19,8 @@ public class User {
 		int []nBoats = {4,3,2,1} ;
 		Boat b ;
 		
-		for(int i=1; i <= 2; i++) {
-			for(int j =0; j< 2; j++){ 								// nBoats[i]
+		for(int i=1; i <= 4; i++) {
+			for(int j =0; j< nBoats[i-1]; j++){ 								// nBoats[i]
 																	// length should be checked
 				System.out.println("Enter starting and ending coordinates(of boat of length "+i+")");
 				int x1,x2,y1,y2;
@@ -43,9 +43,6 @@ public class User {
 		}
 		System.out.println("User"+userNo+" , "+"Your board :");
 		myGrid.showGrid();
-	//	for(int i =0; i< 2;i++)
-		//	System.out.println("im here 0.0+ with boat "+myGrid.boats[i].positions[0][0]+myGrid.boats[i].positions[0][1]+myGrid.boats[i].positions[1][0]+myGrid.boats[i].positions[1][1]);
-
 	}
 	public int shoot(User otherUser) {
 		int x,y;
