@@ -1,6 +1,12 @@
+// -1 -- nothing there 
+// -2 -- a boat
+// 1  -- shoot a boat
+// 2  -- sanked a boat
+// 0  -- incorrect shoot
+// 
 import java.util.Scanner;
 public class Main {
-	
+
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		
@@ -33,7 +39,7 @@ public class Main {
 				user2.enemyGrid.showGrid();
 				if( us2 == 1 ) System.out.println("USER2: you shot a boat !");
 				if ( us2 == 2) { user2.nDestroyed++; System.out.println("USER2: you sanked a boat!!!");}
-				if(user2.nDestroyed == 4) {
+				if(user2.nDestroyed == 4) {                                 // change it 
 					System.out.println("USER2 won!");
 					System.exit(0);
 				}

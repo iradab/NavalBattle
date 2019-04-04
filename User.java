@@ -18,9 +18,9 @@ public class User {
 		System.out.println("USER"+userNo+" : ");
 		int []nBoats = {4,3,2,1} ;
 		Boat b ;
-		
-		for(int i=1; i <= 4; i++) {
-			for(int j =0; j< nBoats[i-1]; j++){ 								// nBoats[i]
+		 
+		for(int i=1; i <= 2; i++) {                         // change it // it is length
+			for(int j =0; j< 2; j++){ 								// nBoats[i]
 																	// length should be checked
 				System.out.println("Enter starting and ending coordinates(of boat of length "+i+")");
 				int x1,x2,y1,y2;
@@ -33,7 +33,7 @@ public class User {
 				}
 				b = new Boat();
 				b.createBoat(x1-1, y1-1, x2-1, y2-1);
-				if( myGrid.canAdd(b) == true)
+				if( myGrid.canAdd(b) == true && b.length == i)
 					myGrid.addBoats(b);
 				else {
 					System.out.println("Cant add this boat .. Enter again");
