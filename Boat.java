@@ -1,14 +1,14 @@
 public class Boat {
 	int [][]positions = new int[2][2];
 	int length;
-	boolean verticle;
+	boolean vertical;
 	
-	public void createBoat(int x1,int y1, int x2,int y2) {
-		if(x1 == x2 || y1 == y2) {
+	public boolean createBoat(int x1,int y1, int x2,int y2) {
+		if( (x1 == x2 || y1 == y2) && x1>=0 && x2>=0 && y1>=0 && y2>=0 && x1<10 && x2<10 && y1<10 && y2<10 ) {
 
 			if(x1 == x2) {
 				this.length = Math.abs(y2-y1)+1;
-				this.verticle = true;
+				this.vertical = true;
 				if(y1>y2) {
 					int y = y1;
 					int x = x1;
@@ -19,7 +19,7 @@ public class Boat {
 			}
 			else {
 				this.length = Math.abs(x2-x1)+1;
-				this.verticle = false;
+				this.vertical = false;
 				if(x1 > x2) {
 					int y = y1;
 					int x = x1;
@@ -31,7 +31,9 @@ public class Boat {
 			this.positions[0][1] = y1;
 			this.positions[1][0] = x2;
 			this.positions[1][1] = y2;
-			
+			return true;
 		}
+		else
+			return false;
 	}
 }

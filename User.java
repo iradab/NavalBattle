@@ -32,13 +32,20 @@ public class User {
 					 x2 = input.nextInt(); y2 = input.nextInt();
 				}
 				b = new Boat();
-				b.createBoat(x1-1, y1-1, x2-1, y2-1);
-				if( myGrid.canAdd(b) == true && b.length == i)
-					myGrid.addBoats(b);
+				boolean boo = b.createBoat(x1-1, y1-1, x2-1, y2-1);
+				if(boo == true) {
+					if(myGrid.canAdd(b) == true && b.length == i)
+						myGrid.addBoat(b);
+					else {
+						System.out.println("Cant add this boat .. Enter again");
+						j--;
+					}
+				}
 				else {
 					System.out.println("Cant add this boat .. Enter again");
 					j--;
 				}
+				
 			}
 		}
 		System.out.println("User"+userNo+" , "+"Your board :");
@@ -48,8 +55,10 @@ public class User {
 		int x,y;
 		System.out.println("USER"+userNo+" ,your turn to shoot.. Enter coordinates:");
 		x = input.nextInt(); y =input.nextInt();
+		if(x <= 0 || y <=0  || x>10 || y>10) return 3; // error return 
 		int sank = otherUser.myGrid.checkShoot(x-1,y-1,this.enemyGrid); 
 		return sank;
 	}
+	
 }
 
