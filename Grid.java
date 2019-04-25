@@ -2,8 +2,9 @@
 public class Grid {
 	int size = 10;
 	int board[][] = new int[size][size];
-	Boat boats[] = new Boat[10];
+	Boat boats[] = new Boat[10];           // boats of this grid
 	int nBoats ;
+	//initializing the board with -1 values
 	public void initGrid() {
 		for(int i=0; i< size;i++) 
 			for(int j=0; j<size; j++)
@@ -11,6 +12,7 @@ public class Grid {
 		nBoats = 0;
 	}
 	
+	// showing the grid
     public void showGrid(){
     	for(int i=65; i< size+65; i++) {
     		System.out.printf("\t%c",i);
@@ -28,7 +30,7 @@ public class Grid {
 
     }
     
-   
+   // adding a boat to a board of a grid
     public void addBoat(Boat b) {         					
     	boats[nBoats] = b;
     	nBoats++;
@@ -43,7 +45,7 @@ public class Grid {
     		}
     	}
     }
-    
+    // checking whether a boat can be added to this grid or not
     public boolean canAdd(Boat b) { 
     	if(b.vertical == true) {
     		for(int xF = b.positions[0][0]-1,count = 0; count< 3; count++, xF++) {
@@ -66,15 +68,15 @@ public class Grid {
     	return true;
     } 
     public int checkShoot(int x, int y,Grid enemyGrid) { 
-    	if( this.board[x][y] >= 0 ) {
-    		return 3;
+    	if( this.board[x][y] >= 0 ) {      // this position has already been shoot before
+    		return 3;                      // return error code
     	}
-    	if ( this.board[x][y] == -1) { 
+    	if ( this.board[x][y] == -1) {    // there is no boat
     		this.board[x][y] = 0;
     		enemyGrid.board[x][y] = 0;
     		return 0; 
     	}
-    	else if(this.board[x][y] == -2) { // there was a ship
+    	else if(this.board[x][y] == -2) { // there is a ship
     		this.board[x][y] = 1;
     		enemyGrid.board[x][y] = 1;
     		for(int i=0; i<nBoats; i++) {
@@ -82,14 +84,7 @@ public class Grid {
     			if(boats[i].vertical == true) {
     				if( x == boats[i].positions[0][0] && y<= boats[i].positions[1][1] && y>= boats[i].positions[0][1] ) {
 							if( boats[i].length == 1 ) {    		    							
-	    						// boat surround function, make all surrounding = 0 
-	    						for(int xF = boats[i].positions[0][0]-1,count = 0; count< 3; count++, xF++) {
-	    							for(int yF = boats[i].positions[0][1]-1 ,count2 = 0; count2 < 3; count2++, yF++ )
-	    								if(xF > -1 && yF > -1 &&  xF < 10 && yF < 10) {
-	    									enemyGrid.board[xF][yF] = 0;
-	    									this.board[xF][yF] = 0;
-	    								}
-	    						}
+								boatSurround(boats[i],enemyGrid,this,boats[i].length,true);
 								this.board[x][y] = 2;   
 								enemyGrid.board[x][y] = 2;
 								return 2;
@@ -98,19 +93,8 @@ public class Grid {
     							if(this.board[x][y1] == 1) {
 
     								if(y1 == boats[i].positions[1][1]) { // means boat is sank,change all to 2
-    		    						// boat surround function, make all surrounding = 0 
-    		    						for(int xF = boats[i].positions[0][0]-1,count = 0; count< 3; count++, xF++) {
-    		    							for(int yF = boats[i].positions[0][1]-1 ,count2 = 0; count2 < boats[i].length +2; count2++, yF++ )
-    		    								if(xF > -1 && yF > -1 && xF < 10 && yF < 10) {
-    		    									enemyGrid.board[xF][yF] = 0;
-    		    									this.board[xF][yF] = 0;
-    		    								}
-    		    						}
-    									//boat.sank function // make all 2
-    		    						for(int y2 = boats[i].positions[0][1]; y2<=boats[i].positions[1][1]; y2++) {
-    		    							this.board[x][y2] = 2;   
-    		    							enemyGrid.board[x][y2] = 2;
-    		    						}
+    									boatSurround(boats[i],enemyGrid,this,boats[i].length,true);
+    									boatSank(boats[i],x,enemyGrid);
     		    						return 2;
     								}
     							}
@@ -127,19 +111,8 @@ public class Grid {
 						for(int x1 = boats[i].positions[0][0]; x1<=boats[i].positions[1][0]; x1++) {
 							if(this.board[x1][y] == 1) {
 								if(x1 == boats[i].positions[1][0]) { // means boat is sank,change all to 2
-		    						// boat surround function, make all surrounding = 0 
-		    						for(int xF = boats[i].positions[0][0]-1,count = 0; count< boats[i].length+2; count++, xF++) {
-		    							for(int yF = boats[i].positions[0][1]-1 ,count2 = 0; count2 < 3; count2++, yF++ ) 
-		    								if(xF > -1 && yF > -1 && xF < 10 && yF < 10) {
-		    									enemyGrid.board[xF][yF] = 0;
-		    									this.board[xF][yF] = 0;
-		    								}
-		    						}
-									//boat.sank function
-		    						for(int x2 = boats[i].positions[0][0]; x2<=boats[i].positions[1][0]; x2++) {
-		    							this.board[x2][y] = 2;   		    
-		    							enemyGrid.board[x2][y] = 2;
-		    						}
+									boatSurround(boats[i],enemyGrid,this,boats[i].length,false);
+									boatSankh(boats[i],x,enemyGrid);
 		    						return 2;
 								}
 							}
@@ -156,5 +129,34 @@ public class Grid {
     				
     	}
     	return 0;
+    }
+    
+	// boat surround function, make all surrounding = 0 
+    public void boatSurround(Boat b,Grid enemyGrid, Grid thisGrid,int length, boolean vertical) {
+    	int i,j;
+    	if(length == 1) { i =3; j =3;}
+    	else if(vertical == true) {i=3; j= b.length+2;}
+    	else { i = b.length+2;j= 3; }
+    	for(int xF = b.positions[0][0]-1,count = 0; count< i; count++, xF++) {
+			for(int yF = b.positions[0][1]-1 ,count2 = 0; count2 <j ; count2++, yF++ )
+				if(xF > -1 && yF > -1 &&  xF < 10 && yF < 10) {
+					enemyGrid.board[xF][yF] = 0;
+					thisGrid.board[xF][yF] = 0;
+				}
+    	}
+    }
+    // when boat sank, change the boards of user and enemy
+    public void boatSank(Boat b,int x,Grid enemyGrid) {
+		for(int y2 = b.positions[0][1]; y2<=b.positions[1][1]; y2++) {
+			this.board[x][y2] = 2;   
+			enemyGrid.board[x][y2] = 2;
+		}
+    }
+    public void boatSankh(Boat b,int y,Grid enemyGrid) {
+
+		for(int x2 = b.positions[0][0]; x2<=b.positions[1][0]; x2++) {
+			this.board[x2][y] = 2;   		    
+			enemyGrid.board[x2][y] = 2;
+		}
     }
 }
