@@ -1,6 +1,7 @@
 # Naval Battle Game
 
 Naval Battle Game for Software Engineering Class ,written in Java.
+
 There are several versions of the game to play:
 -  local 1 player + computer   (console)
 -  local 2 player on 1 screen  (console)
