@@ -18,12 +18,12 @@ public class User {
 	// user puts boats in his grid
 	public void putBoats() {
 		System.out.println("USER"+userNo+" : ");
-		int []nBoats = {4,3,2,1} ;
+		int []nBoats = {1,2,1,1} ;
 		Boat b ;
 		 
-		for(int i=1; i <= 2; i++) {                         // change it // it is length
-			for(int j =0; j< 2; j++){ 								// nBoats[i]
-																	// length should be checked
+		for(int i=2; i <= 5; i++) {                         // change it // it is length
+			for(int j =0; j< nBoats[i-2]; j++){ 								
+																	
 				int x1,x2,y1,y2;
 				char c1,c2;
 				if(i == 1)
@@ -34,23 +34,6 @@ public class User {
 				x1 = input.nextInt(); //y1 = input.nextInt();
 				c1 = input.next(".").charAt(0);
 				y1 = c1 - 'A' + 1 ;
-				/*
-				boolean valid;
-				do {
-					try {
-							System.out.println("Enter starting and ending coordinates(of boat of length "+i+")");
-					    	x1 = input.nextInt(); //y1 = input.nextInt();
-							c1 = input.next(".").charAt(0);
-							y1 = c1 - 'A' + 1 ;
-							valid = true;
-							
-	
-					} catch (InputMismatchException e) {
-						System.out.println("Cant add this boat .. Enter again");
-						valid = false;
-						//input.nextLine();
-					} 		
-				}while(!valid);*/
 
 				if(i == 1) { 
 					x2= x1;  y2 = y1;
