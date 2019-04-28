@@ -39,9 +39,7 @@ End with an example of getting some data out of the system or using it for a lit
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/Holmes-sh/NavalBattle/releases). 
 
 ## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* **Xaliq Aghakarimov**  [xaliq2299](https://github.com/xaliq2299)
+* **Irada Bunyatova**    [Holmes-sh](https://github.com/Holmes-sh)
 
 
