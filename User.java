@@ -18,11 +18,11 @@ public class User {
 	// user puts boats in his grid
 	public void putBoats() {
 		System.out.println("USER"+userNo+" : ");
-		int []nBoats = {4,3,2,1} ;
+		int []nBoats = {1,2,1,1} ;
 		Boat b ;
 		 
-		for(int i=1; i <= 2; i++) {                         // change it // it is length
-			for(int j =0; j< 2; j++){ 								// nBoats[i]
+		for(int i=2; i <= 5; i++) {                         
+			for(int j =0; j< nBoats[i-2]; j++){ 								
 																	// length should be checked
 				int x1,x2,y1,y2;
 				char c1,c2;
@@ -34,23 +34,6 @@ public class User {
 				x1 = input.nextInt(); //y1 = input.nextInt();
 				c1 = input.next(".").charAt(0);
 				y1 = c1 - 'A' + 1 ;
-				/*
-				boolean valid;
-				do {
-					try {
-							System.out.println("Enter starting and ending coordinates(of boat of length "+i+")");
-					    	x1 = input.nextInt(); //y1 = input.nextInt();
-							c1 = input.next(".").charAt(0);
-							y1 = c1 - 'A' + 1 ;
-							valid = true;
-							
-	
-					} catch (InputMismatchException e) {
-						System.out.println("Cant add this boat .. Enter again");
-						valid = false;
-						//input.nextLine();
-					} 		
-				}while(!valid);*/
 
 				if(i == 1) { 
 					x2= x1;  y2 = y1;
@@ -79,6 +62,49 @@ public class User {
 		System.out.println("User"+userNo+" , "+"Your board :");
 		myGrid.showGrid();
 	}
+	public void putBoatsM() { // Machine puts boats 
+		System.out.println("Machine put his boats.. ");
+		int []nBoats = {1,2,1,1} ;
+		Boat b ;
+		int m;
+
+		 
+		for(int i=2; i <= 5; i++) {                      
+			for(int j =0; j< nBoats[i-2]; j++){ 								// nBoats[i]
+				int x1,x2,y1,y2;
+				x1 = (int)(Math.random()*10 + 1);
+				y1 = (int)(Math.random()*10 + 1);
+
+				if(i == 1) { 
+					x2= x1;  y2 = y1;
+				}
+				else {
+					 m = (int)(Math.random()%2);
+					 if ( m == 1) {
+						 x2 = x1 + i -1 ;
+						 y2 = y1; 
+					 }
+					 else {
+						 x2 = x1 ;
+						 y2 = y1 + i -1 ; 
+					 }
+				}
+				b = new Boat();
+				boolean boo = b.createBoat(x1-1, y1-1, x2-1, y2-1);
+				if(boo == true) {
+					if(myGrid.canAdd(b) == true && b.length == i)
+						myGrid.addBoat(b);
+					else {
+						j--;
+					}
+				}
+				else {
+					j--;
+				}
+				
+			}
+		}
+	}
 	// user makes a shoot
 	public int shoot(User otherUser) {
 		int x,y;
@@ -89,6 +115,20 @@ public class User {
 		y = c - 'A' + 1 ;
 		if(x <= 0 || y <=0  || x>10 || y>10) return 3; 					// error return 
 		int sank = otherUser.myGrid.checkShoot(x-1,y-1,this.enemyGrid); // check the user's shoot 
+		return sank;
+	}
+	
+	public int shootM(User otherUser) { // Machine makes a shoot
+		int x,y;
+		char c;
+		x = (int)(Math.random()*10 + 1);
+		y = (int)(Math.random()*10 + 1);
+		if(x <= 0 || y <=0  || x>10 || y>10) return 3; 					// error return 
+		int sank = otherUser.myGrid.checkShoot(x-1,y-1,this.enemyGrid); // check the user's shoot 
+		if(sank != 3) {
+			c = (char) ('A' + y -1);
+			System.out.println("Machine: made a shoot at "+x+" "+c);
+		}
 		return sank;
 	}
 	

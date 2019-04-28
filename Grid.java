@@ -67,6 +67,7 @@ public class Grid {
 			}    	
     	return true;
     } 
+    // check the shoot of user at position (x,y)
     public int checkShoot(int x, int y,Grid enemyGrid) { 
     	if( this.board[x][y] >= 0 ) {      // this position has already been shoot before
     		return 3;                      // return error code
