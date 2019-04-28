@@ -11,9 +11,8 @@ public class Game {
 		u.setLayout(new FlowLayout());
 		u.add(u.myGrid.getContentPane());
 		u.myGrid.table = new int [10][10];
-	
+		
 		Bot bot = new Bot();
-		//u.add(u.enemyGrid.getContentPane());
 		
 		u.add(bot.myGrid.getContentPane());
 		u.revalidate();
@@ -22,7 +21,6 @@ public class Game {
 		// filling the table of indexes with 1 for myGrid
 		for(int i=0;i<10;i++) {
 			for(int j=0;j<10;j++) {
-				//u.myGrid.cells[i][j].removeActionListener(null);
 				Color col = u.myGrid.cells[i][j].getBackground();
 				if ( col == Color.BLACK   || 
 					 col == Color.BLUE    ||
@@ -34,10 +32,8 @@ public class Game {
 			}
 		}
 
-		// boolean turn = true;  // u.turn = turn: not needed anymore
 		for(int i=0;i<10;i++) {
 			for(int j=0;j<10;j++) {
-				//u.myGrid.cells[i][j].addActionListener(u.el[i][j]);
 				int hold = bot.myGrid.table[i][j]; // had to do this
 				JButton button = bot.myGrid.cells[i][j];
 				bot.myGrid.cells[i][j].addActionListener((c) -> {
@@ -45,31 +41,6 @@ public class Game {
 			    });
 			}
 		}
-
-		//for( JButton currentButton: button ) {
-		//  for( ActionListener al : currentButton.getActionListeners() ) {
-		//		currentButton.removeActionListener( al );
-		//	}
-		//}
-		
-		// ==> the game with computer starts here <==
-		/*
-		public static void start(User user, Bot bot) {
-			while(user.won() or bot.won()){
-				while(user.turn) {
-					user.revalidate();
-					user.repaint();
-				}
-				user.turn=false;
-				bot.turn=true;
-				
-				while(bot.turn)
-					bot.turn = bot.shoot(u.myGrid);
-				user.turn=true;
-				bot.turn=false;
-			}
-		}
-		*/
 	}
 	
 	public static void startGame(User u1, User u2) {
@@ -85,16 +56,18 @@ public class Game {
 		u1.myGrid.table = new int [10][10];
 		u1.enemyGrid=new Grid();
 		u1.add(u1.enemyGrid.getContentPane());
-		//u1.revalidate();
-		//u1.repaint();
-
+		
 		// filling the table of indexes with 1 for myGrid
 		for(int i=0;i<10;i++) {
 			for(int j=0;j<10;j++) {
-				//u.myGrid.cells[i][j].removeActionListener(null);
-				if ( u2.myGrid.cells[i][j].getBackground() == Color.BLACK ) {
+				Color col = u2.myGrid.cells[i][j].getBackground();
+				if ( col == Color.BLACK   || 
+					 col == Color.BLUE    ||
+					 col == Color.YELLOW  ||
+					 col == Color.MAGENTA ||
+					 col == Color.PINK
+					)
 					u1.enemyGrid.table[i][j]=1;
-				}
 			}
 		}
 
@@ -104,15 +77,18 @@ public class Game {
 		u2.add(u2.myGrid.getContentPane());
 		u2.myGrid.table = new int [10][10];
 		u2.enemyGrid=new Grid();
-		u2.add(u2.enemyGrid.getContentPane());
-		//u1.revalidate();
-		//u1.repaint();
+		u2.add(u2.enemyGrid.getContentPane());;
 
 		// filling the table of indexes with 1 for myGrid
 		for(int i=0;i<10;i++) {
 			for(int j=0;j<10;j++) {
-				//u.myGrid.cells[i][j].removeActionListener(null);
-				if ( u1.myGrid.cells[i][j].getBackground() == Color.BLACK )
+				Color col = u1.myGrid.cells[i][j].getBackground();
+				if ( col == Color.BLACK   || 
+					 col == Color.BLUE    ||
+					 col == Color.YELLOW  ||
+					 col == Color.MAGENTA ||
+					 col == Color.PINK
+					)
 					u2.enemyGrid.table[i][j]=1;
 			}
 		}
@@ -120,9 +96,7 @@ public class Game {
 		// adding Action Listeners 
 		for(int i=0;i<10;i++) {
 			for(int j=0;j<10;j++) {
-				//u.myGrid.cells[i][j].addActionListener(u.el[i][j]);
 				int hold = u1.enemyGrid.table[i][j]; // had to do this
-				//System.out.println(hold);
 				JButton button = u1.enemyGrid.cells[i][j];
 				u1.enemyGrid.cells[i][j].addActionListener((c) -> {
 					u1.shoot(u1, u2, hold, button);
@@ -132,16 +106,13 @@ public class Game {
 
 		for(int i=0;i<10;i++) {
 			for(int j=0;j<10;j++) {
-				//u.myGrid.cells[i][j].addActionListener(u.el[i][j]);
 				int hold = u2.enemyGrid.table[i][j]; // had to do this
-				//System.out.println(hold);
 				JButton button = u2.enemyGrid.cells[i][j];
 				u2.enemyGrid.cells[i][j].addActionListener((c) -> {
 					u2.shoot(u1, u2, hold, button);
 			    });
 			}
 		}
-
 
 		u1.setVisible(true); // first user's turn
 	}

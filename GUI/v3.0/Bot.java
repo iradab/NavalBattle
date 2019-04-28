@@ -17,39 +17,6 @@ public class Bot {
 		this.randomPlacingBot(3); // Submarine
 		this.randomPlacingBot(2); // Destroyer
 		
-//				if(y<=5 && myGrid.table[x][y+1] != 1 &&
-//				   myGrid.table[x][y+2] != 1 &&
-//				   myGrid.table[x][y+3] != 1 &&
-//				   myGrid.table[x][y+4] != 1
-//				  ) {
-//					System.out.println("HOr");
-//					myGrid.table[x][y]=1;
-//					myGrid.table[x][y+1]=1;
-//					myGrid.table[x][y+2]=1;
-//					myGrid.table[x][y+3]=1;
-//					myGrid.table[x][y+4]=1;
-//					
-//					shipIsValid=false;
-//				}
-//			}
-//			else if(orient == 1) {
-//				if(x<=5 && myGrid.table[x+1][y] != 1 &&
-//				   myGrid.table[x+2][y] != 1 &&
-//				   myGrid.table[x+3][y] != 1 &&
-//				   myGrid.table[x+4][y] != 1
-//				   ) {
-//						System.out.println("Ver");
-//						myGrid.table[x][y]=1;
-//						myGrid.table[x+1][y]=1;
-//						myGrid.table[x+2][y]=1;
-//						myGrid.table[x+3][y]=1;
-//						myGrid.table[x+4][y]=1;
-//					
-//						shipIsValid=false;
-//				}
-//			}
-//		}
-
 		this.turn=false; // TODO
 	}
 	
@@ -73,7 +40,7 @@ public class Bot {
 						}
 					}
 					if(shipCanBePlaced) {
-						//System.out.println("Horizontal");
+						//System.out.println("Horizontal"); // for debugging
 						for(int j=0;j<size;j++)
 							myGrid.table[x][y+j]=1;
 						shipIsValid=true;
@@ -89,7 +56,7 @@ public class Bot {
 						}
 					}
 					if(shipCanBePlaced) {
-						//System.out.println("Vertical");
+						//System.out.println("Vertical"); // for debugging
 						for(int i=0;i<size;i++)
 							myGrid.table[x+i][y]=1;
 						shipIsValid=true;
@@ -97,12 +64,13 @@ public class Bot {
 				}
 			}
 		}
+		//System.out.println(x+" "+" "+y); // for debugging
+
 		// Setting the info about ship
-		//System.out.println(x+" "+" "+y);
 		switch(size) { // determining the type of 
 			case 5: shipIndex=0; myGrid.ships[shipIndex].name="Carrier"; 	break;
 			case 4: shipIndex=1; myGrid.ships[shipIndex].name="BattleShip"; break;
-			case 3: if(myGrid.ships[2].validity) {
+			case 3: if(myGrid.ships[2].validity) { // handling 2 ships problem of size 3
 						shipIndex=3;
 						myGrid.ships[shipIndex].name="Submarine";
 					}
@@ -149,9 +117,7 @@ public class Bot {
 		
 		return true; // the case where the index is 2, the bot still has a chance to shoot
 	}
-	
-	public void removeListeners() {} // TODO
-	
+		
 	public boolean is_Won(User user) {
 		boolean WON=true;
 		for(int i=0;i<10;i++) {
@@ -163,9 +129,5 @@ public class Bot {
 			}
 		}
 		return WON;
-	}
-
-	public boolean isValid() { // checks whether the ships are arranged in a correct way
-		return true; // TODO
 	}
 }

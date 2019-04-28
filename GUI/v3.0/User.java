@@ -2,7 +2,6 @@ package battleShipGUI;
 
 import javax.swing.*;
 import java.awt.*;
-//import java.util.concurrent.TimeUnit;
 
 public class User extends JFrame{
 	private static final long serialVersionUID = 1L;
@@ -19,30 +18,15 @@ public class User extends JFrame{
 		this.name=name;
 		TextField t = new TextField(this.name+", Choose your boats");
 		this.setSize (WIDTH, HEIGHT);
-		//this.setLayout(new BorderLayout());
 		this.setLayout(new FlowLayout());
 		this.setTitle("Battle Ship");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.myGrid = new Grid();
-		//this.turn = true; // TODO
 
-		//this.setUserListeners(); //adding action listener for cells(buttons) of user myGrid
 		this.add(t, BorderLayout.NORTH);
 		this.add(this.myGrid.getContentPane(), BorderLayout.CENTER);
-		///b1.setLocation(300,400);
 	}
-/*	
-	public void setUserListeners() {
-		this.ul = new UserListener [10][10];
-		int i=0, j=0;
-		for(i=0;i<10;i++) {
-			for(j=0;j<10;j++) {
-				this.ul[i][j] = new UserListener();
-				this.myGrid.cells[i][j].addActionListener(this.ul[i][j]);				
-			}
-		}
-	}
-*/
+
 	public void removeUserListeners() {
 		for(int i=0;i<10;i++) {
 			for(int j=0;j<10;j++)
@@ -104,13 +88,12 @@ public class User extends JFrame{
 		return WON;
 	}
 
-	// can it return a boolean type variable?
 	public void shoot(User u, Bot bot, int index, JButton button) {		
 		int info[]=getStateOfCell(bot, button);
 		int x=info[0];		int y=info[1];
 		index=info[2];
 		
-		// besides index can be 2 which means that cell was already checked
+		// index can be 2 which means that cell was already checked
 		// the handler does nothing in that case
 		if(index == 1) { // The user damaged
 			button.setBackground(Color.RED);
@@ -123,11 +106,6 @@ public class User extends JFrame{
 			bot.turn=true;
 			while(bot.turn)
 				bot.turn = bot.shoot(u.myGrid);
-			//try {
-			//	TimeUnit.SECONDS.sleep(1);
-			//} catch (InterruptedException e) {
-			//    e.printStackTrace();
-			//}
 		}
 		u.revalidate();
 		u.repaint();
@@ -136,14 +114,12 @@ public class User extends JFrame{
 			System.out.println("Bot won");	
 			//System.exit(0); // TODO
 			u.removeUserListeners();
-			bot.removeListeners();		
 		}
 
 		if(u.is_Won(bot)) {
 			System.out.println("User won");			
 			//System.exit(0); // TODO
 			u.removeUserListeners();
-			bot.removeListeners();
 		}
 	}
 
@@ -167,7 +143,7 @@ public class User extends JFrame{
 				u2.setVisible(true);
 			}
 		}
-		else if(u2.turn){// TODO: check correctly
+		else if(u2.turn){
 			info=getStateOfCell(u2, button);
 			x=info[0];		y=info[1];
 			index=info[2];
@@ -188,19 +164,6 @@ public class User extends JFrame{
 		
 		// besides index can be 2 which means that cell was already checked
 		// the handler does nothing in that case
-
-		//u1.turn=false;
-			//u2.turn=true;
-	//		while(u2.turn)
-//				u2.turn = u2.shoot(u1.myGrid);
-			//try {
-			//	TimeUnit.SECONDS.sleep(1);
-			//} catch (InterruptedException e) {
-			//    e.printStackTrace();
-			//}
-		
-		//u1.revalidate();
-		//u1.repaint();
 
 		if(u1.is_Won()) {
 			System.out.println(u1.name +" won");

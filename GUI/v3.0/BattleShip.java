@@ -1,3 +1,4 @@
+package battleShipGUI;
 import java.awt.*;
 import javax.swing.*;
 
@@ -20,9 +21,9 @@ public class BattleShip{
 		b1.addActionListener((c) -> {
 			botButtonPressed(window);
 	    });
-		//b2.addActionListener((c) -> {
-			//vsButtonPressed(window);
-	    //});
+		b2.addActionListener((c) -> {
+			vsButtonPressed(window);
+	    });
 		b4.addActionListener((c) -> {
 			exitButtonPressed();
 	    });
@@ -39,7 +40,7 @@ public class BattleShip{
 	}
 	
 	public static void arrangeShipsForUser() {
-		User u = new User("Khaliq");
+		User u = new User("Player");
 		JButton confirm = new JButton("Confirm");
 		u.add(confirm, BorderLayout.EAST);
 		
@@ -76,11 +77,34 @@ public class BattleShip{
 	}
 
 	public static void arrangeShipsForUsers() {
-		User user1 = new User("Somebody");
-		User user2 = new User("Khaliq");
-
+		User user1 = new User("Player1");
+		User user2 = new User("Player2");
+		
 		JButton confirm1 = new JButton("Confirm");
 		user1.add(confirm1, BorderLayout.EAST);
+		JButton ship5 = new JButton("Carrier/5");
+		JButton ship4 = new JButton("Battleship/4");
+		JButton ship3a = new JButton("Cruiser/3");
+		JButton ship3b = new JButton("Submarine/3");
+		JButton ship2 = new JButton("Destroyer/2");
+		user1.add(ship5);  user1.add(ship4); user1.add(ship3a);
+		user1.add(ship3b); user1.add(ship2);
+		
+		ship5.addActionListener((e) -> {
+			carrier(user1);
+	    });
+		ship4.addActionListener((e) -> {
+			battleship(user1);
+	    });
+		ship3a.addActionListener((e) -> {
+			cruiser(user1);
+	    });
+		ship3b.addActionListener((e) -> {
+			submarine(user1);
+	    });
+		ship2.addActionListener((e) -> {
+			destroyer(user1);
+	    });
 		confirm1.addActionListener((e) -> {
 			confirmButton1Pressed(user1, user2);
 	    });
@@ -88,6 +112,30 @@ public class BattleShip{
 		
 		JButton confirm2 = new JButton("Confirm");
 		user2.add(confirm2, BorderLayout.EAST);
+		//user2.add(confirm1, BorderLayout.EAST);
+		ship5 = new JButton("Carrier/5");
+		ship4 = new JButton("Battleship/4");
+		ship3a = new JButton("Cruiser/3");
+		ship3b = new JButton("Submarine/3");
+		ship2 = new JButton("Destroyer/2");
+		user2.add(ship5);  user2.add(ship4); user2.add(ship3a);
+		user2.add(ship3b); user2.add(ship2);
+		
+		ship5.addActionListener((e) -> {
+			carrier(user2);
+	    });
+		ship4.addActionListener((e) -> {
+			battleship(user2);
+	    });
+		ship3a.addActionListener((e) -> {
+			cruiser(user2);
+	    });
+		ship3b.addActionListener((e) -> {
+			submarine(user2);
+	    });
+		ship2.addActionListener((e) -> {
+			destroyer(user2);
+	    });
 		confirm2.addActionListener((e) -> {
 			confirmButton2Pressed(user1, user2);
 	    });
@@ -128,7 +176,7 @@ public class BattleShip{
 	}
 	
 	public static void confirmButton1Pressed(User u1, User u2) {
-		if( u1.myGrid.isValid() ) {
+		if( _isValid(u1.myGrid) ) {
 			//System.out.println("Not done");
 			u1.setVisible(false);
 			u2.setVisible(true);
@@ -136,7 +184,7 @@ public class BattleShip{
 	}
 	
 	public static void confirmButton2Pressed(User u1, User u2) {
-		if( u2.myGrid.isValid() ) {
+		if( _isValid(u2.myGrid) ) {
 			u2.setVisible(false);
 			Game.startGame(u1,u2);
 		}

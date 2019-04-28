@@ -11,8 +11,6 @@ public class Grid extends JFrame {
 	public Grid() {
 		this.setPreferredSize(new Dimension(250,250));;
 		this.setLayout(new GridLayout(10,10));
-		//this.setBounds(0, 0, 200, 200);
-		//this.setLocation(0, 50);
 
 		this.table = new int[10][10];
 		for(int i=0;i<10;i++) 
@@ -31,16 +29,4 @@ public class Grid extends JFrame {
 		for(int i=0;i<5;i++)
 			this.ships[i] = new Ship();
 	}
-/*
-	public boolean isValid() {
-		for(int i=0;i<5;i++) {
-			if(this.ships[i].validity == false)
-				return false;
-			System.out.println(2);
-		}
-		return true;
-	}
-*/
-	
-	//public static void cellSelected(JButton cell) {	}
 }

@@ -30,9 +30,5 @@ public class Ship {
 		this.name=name;
 	}
 	
-	public boolean sanked() {
-		return false; // TODO
-	}
-	
-	
+	//public boolean sanked() {}	
 }
