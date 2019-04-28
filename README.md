@@ -1,6 +1,6 @@
 # Naval Battle Game
 
-Naval Battle Game for Software Engineering Class ,written in Java.
+Naval Battle Game for Software Engineering Class ,written in Java .
 
 There are several versions of the game to play:
 -  local 1 player + computer   (console)
@@ -30,8 +30,15 @@ until finished
 ```
 
 End with an example of getting some data out of the system or using it for a little demo
+## UML Diagrams
 
+The following diagrams are presented for each version:
 
+-  activity diagrams
+-  usecase diagrams
+-  sequence diagrams
+-  state diagrams
+-  class diagrams
 
 ## Versioning
 
