@@ -20,6 +20,7 @@ public class Bot {
 		this.turn=false; // TODO
 	}
 	
+	// a method to place a ship for bot in a random, but valid place
 	public void randomPlacingBot(int size) {
 		int x=-1,y=-1, orient=-1, shipIndex=-1;
 		boolean shipIsValid=false;
@@ -47,7 +48,7 @@ public class Bot {
 					}
 				}
 			}
-			else if(orient == 1) {
+			else if(orient == 1) { // vertical
 				if(x<=size) {
 					for(int i=0;i<size;i++) {
 						if(myGrid.table[x+i][y] == 1) {
@@ -97,6 +98,7 @@ public class Bot {
 		}
 	}
 
+	// method for shooting the user's grid for bot
 	public boolean shoot(Grid userGrid) { // randomly chooses some cell
 		Random rand = new Random();
 		int x=rand.nextInt(10);
@@ -118,6 +120,7 @@ public class Bot {
 		return true; // the case where the index is 2, the bot still has a chance to shoot
 	}
 		
+	// method to check whether the bot won or no
 	public boolean is_Won(User user) {
 		boolean WON=true;
 		for(int i=0;i<10;i++) {
