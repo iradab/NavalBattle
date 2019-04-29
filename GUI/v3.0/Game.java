@@ -18,7 +18,7 @@ public class Game {
 		u.revalidate();
 		u.repaint();
 		
-		// filling the table of indexes with 1 for myGrid
+		// filling the table of indexes with 1 for myGrid where there's ship cell
 		for(int i=0;i<10;i++) {
 			for(int j=0;j<10;j++) {
 				Color col = u.myGrid.cells[i][j].getBackground();
@@ -32,6 +32,7 @@ public class Game {
 			}
 		}
 
+		// adding shoot method of user as listener for bot cells
 		for(int i=0;i<10;i++) {
 			for(int j=0;j<10;j++) {
 				int hold = bot.myGrid.table[i][j]; // had to do this
@@ -46,8 +47,8 @@ public class Game {
 	public static void startGame(User u1, User u2) {
 		u1.removeUserListeners(); // removing ActionListeners from Grid Table of the user1
 		u2.removeUserListeners(); // removing ActionListeners from Grid Table of the user2
-		u1.turn=true;
-		u2.turn=false;
+		u1.turn=true;  // by default
+		u2.turn=false; // by default
 		
 		// User 1
 		u1.getContentPane().removeAll();
@@ -93,7 +94,7 @@ public class Game {
 			}
 		}
 
-		// adding Action Listeners 
+		// adding Action Listeners
 		for(int i=0;i<10;i++) {
 			for(int j=0;j<10;j++) {
 				int hold = u1.enemyGrid.table[i][j]; // had to do this
