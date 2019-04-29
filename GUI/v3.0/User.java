@@ -8,11 +8,11 @@ public class User extends JFrame{
 	public static final int WIDTH = 500;
 	public static final int HEIGHT = 500;
 	
-	String name;
-	Grid myGrid;
-	Grid enemyGrid;
+	String name; // each user has his/her name
+	Grid myGrid; // has its own grid of ships
+	Grid enemyGrid; // has a grid for his/her enemy
 	boolean turn;
-	UserListener ul[][];
+	UserListener ul[][]; // the listeners myGrid cells
 	
 	public User(String name){
 		this.name=name;
@@ -27,6 +27,7 @@ public class User extends JFrame{
 		this.add(this.myGrid.getContentPane(), BorderLayout.CENTER);
 	}
 
+	// a method to remove listeners from myGrid cells
 	public void removeUserListeners() {
 		for(int i=0;i<10;i++) {
 			for(int j=0;j<10;j++)
@@ -36,6 +37,7 @@ public class User extends JFrame{
 	
 	// static method that returns the state of a clicked cell in an array
 	// of size 3: [0] for x, [1] for y, [2] to check if there's a ship or not
+	// for bot
 	public static int[] getStateOfCell(Bot bot, JButton button) {
 		int ar[] = new int[3];
 		for(int i=0;i<10;i++) {
@@ -48,7 +50,10 @@ public class User extends JFrame{
 		}
 		return ar;// important in Java
 	}
-	
+
+	// static method that returns the state of a clicked cell in an array
+	// of size 3: [0] for x, [1] for y, [2] to check if there's a ship or not
+	// for user
 	public static int[] getStateOfCell(User u, JButton button) {
 		int ar[] = new int[3];
 		for(int i=0;i<10;i++) {
@@ -61,7 +66,9 @@ public class User extends JFrame{
 		}
 		return ar;// important in Java
 	}
-	
+
+	// method to check whether user won or no
+	// for user-bot version
 	public boolean is_Won(Bot bot) {
 		boolean WON=true;
 		for(int i=0;i<10;i++) {
@@ -75,6 +82,8 @@ public class User extends JFrame{
 		return WON;
 	}
 	
+	// method to check whether user won or no
+	// for user-user version
 	public boolean is_Won() {
 		boolean WON=true;
 		for(int i=0;i<10;i++) {
@@ -88,6 +97,7 @@ public class User extends JFrame{
 		return WON;
 	}
 
+	// shoot method for user-bot version
 	public void shoot(User u, Bot bot, int index, JButton button) {		
 		int info[]=getStateOfCell(bot, button);
 		int x=info[0];		int y=info[1];
@@ -107,12 +117,12 @@ public class User extends JFrame{
 			while(bot.turn)
 				bot.turn = bot.shoot(u.myGrid);
 		}
-		u.revalidate();
-		u.repaint();
-		
+		u.revalidate();	u.repaint(); // update changes on grid
+	
 		if(bot.is_Won(u)) {
 			System.out.println("Bot won");	
 			//System.exit(0); // TODO
+			// TODO: show all grid with 0 1 or red green
 			u.removeUserListeners();
 		}
 
@@ -123,6 +133,7 @@ public class User extends JFrame{
 		}
 	}
 
+	// shoot method for user-user version
 	public void shoot(User u1, User u2, int index, JButton button) {		
 		int info[], x, y;
 		if(u1.turn) {
@@ -167,12 +178,12 @@ public class User extends JFrame{
 
 		if(u1.is_Won()) {
 			System.out.println(u1.name +" won");
-			//System.exit(0); // TODO
+			//System.exit(0); // TODO: remove Listeners+show grid
 		}
 
 		if(u2.is_Won()) {
 			System.out.println(u2.name +" won");			
-			//System.exit(0); // TODO
+			//System.exit(0); // TODO: remove Listeners+show grid
 		}
 	}
 }
