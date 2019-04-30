@@ -8,11 +8,11 @@ public class User extends JFrame{
 	public static final int WIDTH = 500;
 	public static final int HEIGHT = 500;
 	
-	String name; // each user has his/her name
-	Grid myGrid; // has its own grid of ships
-	Grid enemyGrid; // has a grid for his/her enemy
-	boolean turn;
-	UserListener ul[][]; // the listeners myGrid cells
+	public String name; // each user has his/her name
+	public Grid myGrid; // has its own grid of ships
+	public Grid enemyGrid; // has a grid for his/her enemy
+	public boolean turn;
+	public UserListener ul[][]; // the listeners myGrid cells
 	
 	public User(String name){
 		this.name=name;
