@@ -15,7 +15,7 @@ In our project you can play with computer or with another player in one screen. 
 The players play in turns and they take shots at each other. You can take a shot by pressing some cell on the 10 x 10 grid space of enemy. Like this game goes on until one of them sankes all the ships of the other. In that case that player becomes a winner.
 
 ### Installation and Execution
-You can find all the project sources from the folder we provided. If you want to see and download it from github you can go to the github account of one of the authors below and see the repository under the name NavalBattle.
+You can find all the project sources from the folder we provided. If you want to see and download it from github you can go to the github account of one of the authors below and see the repository under the name __NavalBattle__.
 After downloading the folder of a project you can compile any version of a project you want through terminal via *javac* (Note that *javac* should be installed in your machine):
 ```
 	javac *.java
