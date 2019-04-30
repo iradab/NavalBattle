@@ -1,5 +1,3 @@
-package battleShipGUI;
-
 public class Ship {
 	int length;
 	String name;

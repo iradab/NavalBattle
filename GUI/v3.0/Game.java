@@ -1,12 +1,10 @@
-package battleShipGUI;
-
 import java.awt.Color;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
 
 public class Game {
 	public static void startGame(User u) {
-		u.removeUserListeners(); // removing ActionListeners from Grid Table of the user
+		u.removeUserListeners(); //! removing ActionListeners from Grid Table of the user
 		u.getContentPane().removeAll();
 		u.setLayout(new FlowLayout());
 		u.add(u.myGrid.getContentPane());
@@ -18,7 +16,7 @@ public class Game {
 		u.revalidate();
 		u.repaint();
 		
-		// filling the table of indexes with 1 for myGrid where there's ship cell
+		//! filling the table of indexes with 1 for myGrid where there's ship cell
 		for(int i=0;i<10;i++) {
 			for(int j=0;j<10;j++) {
 				Color col = u.myGrid.cells[i][j].getBackground();
@@ -32,10 +30,10 @@ public class Game {
 			}
 		}
 
-		// adding shoot method of user as listener for bot cells
+		//! adding shoot method of user as listener for bot cells
 		for(int i=0;i<10;i++) {
 			for(int j=0;j<10;j++) {
-				int hold = bot.myGrid.table[i][j]; // had to do this
+				int hold = bot.myGrid.table[i][j]; //! had to do this
 				JButton button = bot.myGrid.cells[i][j];
 				bot.myGrid.cells[i][j].addActionListener((c) -> {
 					u.shoot(u, bot, hold, button);
@@ -45,12 +43,12 @@ public class Game {
 	}
 	
 	public static void startGame(User u1, User u2) {
-		u1.removeUserListeners(); // removing ActionListeners from Grid Table of the user1
-		u2.removeUserListeners(); // removing ActionListeners from Grid Table of the user2
-		u1.turn=true;  // by default
-		u2.turn=false; // by default
+		u1.removeUserListeners(); //! removing ActionListeners from Grid Table of the user1
+		u2.removeUserListeners(); //! removing ActionListeners from Grid Table of the user2
+		u1.turn=true;  //! by default
+		u2.turn=false; //! by default
 		
-		// User 1
+		//! User 1
 		u1.getContentPane().removeAll();
 		u1.setLayout(new FlowLayout());
 		u1.add(u1.myGrid.getContentPane());
@@ -58,7 +56,7 @@ public class Game {
 		u1.enemyGrid=new Grid();
 		u1.add(u1.enemyGrid.getContentPane());
 		
-		// filling the table of indexes with 1 for myGrid
+		//! filling the table of indexes with 1 for myGrid
 		for(int i=0;i<10;i++) {
 			for(int j=0;j<10;j++) {
 				Color col = u2.myGrid.cells[i][j].getBackground();
@@ -72,7 +70,7 @@ public class Game {
 			}
 		}
 
-		// User 2
+		//! User 2
 		u2.getContentPane().removeAll();
 		u2.setLayout(new FlowLayout());
 		u2.add(u2.myGrid.getContentPane());
@@ -80,7 +78,7 @@ public class Game {
 		u2.enemyGrid=new Grid();
 		u2.add(u2.enemyGrid.getContentPane());;
 
-		// filling the table of indexes with 1 for myGrid
+		//! filling the table of indexes with 1 for myGrid
 		for(int i=0;i<10;i++) {
 			for(int j=0;j<10;j++) {
 				Color col = u1.myGrid.cells[i][j].getBackground();
@@ -94,10 +92,10 @@ public class Game {
 			}
 		}
 
-		// adding Action Listeners
+		//! adding Action Listeners
 		for(int i=0;i<10;i++) {
 			for(int j=0;j<10;j++) {
-				int hold = u1.enemyGrid.table[i][j]; // had to do this
+				int hold = u1.enemyGrid.table[i][j]; //! had to do this
 				JButton button = u1.enemyGrid.cells[i][j];
 				u1.enemyGrid.cells[i][j].addActionListener((c) -> {
 					u1.shoot(u1, u2, hold, button);
@@ -107,7 +105,7 @@ public class Game {
 
 		for(int i=0;i<10;i++) {
 			for(int j=0;j<10;j++) {
-				int hold = u2.enemyGrid.table[i][j]; // had to do this
+				int hold = u2.enemyGrid.table[i][j]; //! had to do this
 				JButton button = u2.enemyGrid.cells[i][j];
 				u2.enemyGrid.cells[i][j].addActionListener((c) -> {
 					u2.shoot(u1, u2, hold, button);
@@ -115,6 +113,6 @@ public class Game {
 			}
 		}
 
-		u1.setVisible(true); // first user's turn
+		u1.setVisible(true); //! first user's turn
 	}
 }

@@ -1,4 +1,3 @@
-package battleShipGUI;
 import java.awt.*;
 import javax.swing.*;
 
@@ -10,9 +9,11 @@ public class BattleShip{
 		JFrame window = new JFrame("Battle Ship");
 		window.setSize (WIDTH, HEIGHT);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		TextField t = new TextField("Welcome, choose the mode of the game");
-		window.setLayout(new GridLayout(5,1));
+		JLabel welcome = new JLabel("Welcome, choose the mode of the game");
+		welcome.setFont(new Font("Courier", Font.BOLD, 22));
 		
+		window.setLayout(new GridLayout(5,1));
+				
 		Button b1 = new Button ("vs Computer");
 		Button b2 = new Button ("2 players");
 		Button b3 = new Button ("Online (not available)");
@@ -28,16 +29,16 @@ public class BattleShip{
 			exitButtonPressed();
 	    });
 		
-		window.add(t);
+		window.add(welcome);
 		window.add(b1); window.add(b2);
 		window.add(b3);	window.add(b4);
 		window.setVisible(true);
 	}
 	
-	public static void arrangeShipsForUser() { // for the versus computer version
+	public static void arrangeShipsForUser() { //! for the versus computer version
 		User u = new User("Player");
 		JButton confirm = new JButton("Confirm");
-		u.add(confirm, BorderLayout.EAST);
+		u.add(confirm); //!u.add(confirm, BorderLayout.EAST);
 		addShipListeners(u);
 		confirm.addActionListener((e) -> {
 			confirmButtonPressed(u);
@@ -45,7 +46,7 @@ public class BattleShip{
 		u.setVisible(true);
 	}
 
-	public static void arrangeShipsForUsers() { // for 2 players version
+	public static void arrangeShipsForUsers() { //! for 2 players version
 		User user1 = new User("Player1");
 		User user2 = new User("Player2");	
 		JButton confirm1 = new JButton("Confirm");
@@ -73,7 +74,7 @@ public class BattleShip{
 		JButton ship2 = new JButton("Destroyer/2");
 		user.add(ship5);  user.add(ship4); user.add(ship3a);
 		user.add(ship3b); user.add(ship2);
-	
+		
 		ship5.addActionListener((e) -> {
 			carrier(user);
 	    });
@@ -107,7 +108,7 @@ public class BattleShip{
 		System.exit(1);
 	}
 
-	public static boolean _isValid(Grid grid) { // checks whether a grid of ships is valid
+	public static boolean _isValid(Grid grid) { //! checks whether a grid of ships is valid
 		for(int i=0;i<5;i++){
 			if(grid.ships[i].validity == false)
 			return false;
@@ -215,8 +216,8 @@ public class BattleShip{
 	}
 
 	public static void addCellListeners(User user, String shipName) {
-		if(user.ul!=null) { // this if condition is needed to remove all listeners from all buttons
-							// otherwise caused many problems with cell clicks
+		if(user.ul!=null) { //! this if condition is needed to remove all listeners from all buttons
+							//! otherwise caused many problems with cell clicks
 			for(int i=0;i<10;i++) {
 				for(int j=0;j<10;j++) {
 					if(user.ul[i][j] != null)
