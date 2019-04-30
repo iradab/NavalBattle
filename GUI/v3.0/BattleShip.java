@@ -12,7 +12,7 @@ public class BattleShip{
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		TextField t = new TextField("Welcome, choose the mode of the game");
 		window.setLayout(new GridLayout(5,1));
-				
+		
 		Button b1 = new Button ("vs Computer");
 		Button b2 = new Button ("2 players");
 		Button b3 = new Button ("Online (not available)");
