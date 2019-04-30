@@ -48,13 +48,12 @@ For the versions available, see the [tags on this repository](https://github.com
 
 ## Doxygen
 
-The very last version of our project (v3.0) is commented and documented according to doxygen. For this version one can find a file under the name **doxygenFile**. Be sure that doxygen is installed into your machine. After that you can type in terminal:
+The very last version of our project (v3.0) is commented and documented according to doxygen. For this version one can find a file under the name **doxygenFile**. Be sure that *doxygen* is installed into your machine. After that you can type in terminal:
 ```
 	doxygen doxygenFile
 ```
-which will generate two new folders: _html_ and _latex_. These all hold useful information about project respectively one in html format and the other in pdf format. For example, to show you we kept one of these files index.html. You can click on it and see what it outputs about our project.
+which will generate two new folders: _html_ and _latex_. These all hold useful information about project respectively the first in html format and the second in pdf format. For example, to show you we kept one of these files whose name is **index.html**. You can click on it and see what it outputs about our project.
 
 ## Authors
 * **Xaliq Aghakarimov**  [xaliq2299](https://github.com/xaliq2299)
 * **Irada Bunyatova**    [Holmes-sh](https://github.com/Holmes-sh)
-
