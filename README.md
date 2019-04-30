@@ -52,7 +52,7 @@ The very last version of our project (v3.0) is commented and documented accordin
 ```
 	doxygen doxygenFile
 ```
-which will generate two new folders: _html_ and _latex_. These all hold useful information about project respectively the first in html format and the second in pdf format. For example, to show you we kept one of these files whose name is **index.html**. You can click on it and see what it outputs about our project.
+which will generate two new folders: _html_ and _latex_. These all hold useful information about project respectively the first in html format and the second in pdf format. For example, to show you we kept one of these files whose name is **index.html**. We recommend to find this file in html/ folder so that you can click on it and see what it outputs about our project.
 
 ## Authors
 * **Xaliq Aghakarimov**  [xaliq2299](https://github.com/xaliq2299)
