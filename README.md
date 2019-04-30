@@ -10,7 +10,12 @@ There are several versions (or modes) of the game to play:
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+### Rules of a game
+In our project you can play with computer or with another player in one screen. When you start playing the game you have to locate your ships. This is your main job. Afterwards your objective is to find out the hidden ships of enemy. All the players play in turns and the attempt is always to select some cell from enemy's board. Both of the players are provided with boards along with the two grids: the one which consists of your five ships and the other for collection of hit and miss markers.
+The players play in turns and they take shots at each other. You can take a shot by pressing some cell on the 10 x 10 grid space of enemy. Like this game goes on until one of them sankes all the ships of the other. In that case that player becomes a winner.
+
+### Installation and Execution
+You can find the all the project sources from the folder we provided. If you want to see and download it from github you can go to the github account of one of the authors below and see the repository under the name NavalBattle.
 After downloading the folder of a project you can compile any version of a project you want through terminal via *javac* (Note that javac should be installed in your machine):
 ```
 	javac *.java
@@ -26,23 +31,6 @@ in case of GUI version or
 in case of console versions.
 If you have downloaded some version of project via release in github, again perform previous steps.
 For sake of simplicity, it would be better to have some application like eclipse downloaded to your computer in order not to perform the previously shown steps.
-	
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
 
 End with an example of getting some data out of the system or using it for a little demo
 ## UML Diagrams
