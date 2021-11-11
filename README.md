@@ -56,4 +56,4 @@ which will generate two new folders: _html_ and _latex_. These all hold useful i
 
 ## Authors
 * **Xaliq Aghakarimov**  [xaliq2299](https://github.com/xaliq2299)
-* **Irada Bunyatova**    [Holmes-sh](https://github.com/iradab)
+* **Irada Bunyatova**    [iradab](https://github.com/iradab)
